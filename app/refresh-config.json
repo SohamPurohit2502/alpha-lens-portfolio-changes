@@ -1,0 +1,390 @@
+{
+  "baseline_as_of": "2026-08-24",
+  "risk_free_rate": 0.052603,
+  "candidate_pool_count": 15,
+  "full_universe_count": 565,
+  "analyzed_count": 557,
+  "candidates": [
+    {
+      "scheme_code": 119364,
+      "rupeevest_code": 8484,
+      "short_name": "BANK OF INDIA MANUFACTURING & INFRASTRUCTURE FUND",
+      "scheme_name": "BANK OF INDIA MANUFACTURING & INFRASTRUCTURE FUND - Direct Plan - Growth",
+      "category": "Banking / Financial Services",
+      "cohort": "Established leader",
+      "confidence": "High",
+      "peer_median_returns": {
+        "1d": -0.004546160139966338,
+        "7d": 0.0025063939888746445,
+        "1m": 0.02169544937114376,
+        "3m": 0.04336740524170146,
+        "6m": -0.014855176369371947,
+        "1y": 0.07203568326800558,
+        "3y": 0.141736350865713
+      },
+      "peer_median_sharpe": {
+        "1m": 1.9520878333544234,
+        "3m": 0.8730805147520633,
+        "6m": -0.2514200951573061,
+        "1y": 0.18626128776710993,
+        "3y": 0.5813012682284107
+      }
+    },
+    {
+      "scheme_code": 119727,
+      "rupeevest_code": 2817,
+      "short_name": "SBI FOCUSED FUND",
+      "scheme_name": "SBI FOCUSED FUND - Direct Plan - Growth",
+      "category": "Focused Fund",
+      "cohort": "Established leader",
+      "confidence": "High",
+      "peer_median_returns": {
+        "1d": -0.001736135149818574,
+        "7d": -0.0009126245669502375,
+        "1m": 0.036531342719904214,
+        "3m": 0.0548781846043499,
+        "6m": 0.04076410136854902,
+        "1y": 0.05307378431393561,
+        "3y": 0.14672006850709796
+      },
+      "peer_median_sharpe": {
+        "1m": 4.256520747015249,
+        "3m": 1.4724285517612559,
+        "6m": 0.25145004333659654,
+        "1y": 0.08648945258869495,
+        "3y": 0.655747653670206
+      }
+    },
+    {
+      "scheme_code": 133386,
+      "rupeevest_code": 31189,
+      "short_name": "Motilal Oswal ELSS Tax Saver Fund",
+      "scheme_name": "Motilal Oswal ELSS Tax Saver Fund - Direct Plan - Growth",
+      "category": "ELSS",
+      "cohort": "Established leader",
+      "confidence": "High",
+      "peer_median_returns": {
+        "1d": -0.001987564978085943,
+        "7d": -0.0018670460143110912,
+        "1m": 0.028888542333359357,
+        "3m": 0.03885933806146569,
+        "6m": 0.02111141774027203,
+        "1y": 0.025156129719954068,
+        "3y": 0.12852288860806516
+      },
+      "peer_median_sharpe": {
+        "1m": 3.3934088464357526,
+        "3m": 1.0033030941959769,
+        "6m": 0.034125370643595734,
+        "1y": -0.12088459594045883,
+        "3y": 0.6065173540187142
+      }
+    },
+    {
+      "scheme_code": 135805,
+      "rupeevest_code": 33728,
+      "short_name": "Tata India Consumer Fund",
+      "scheme_name": "Tata India Consumer Fund - Direct Plan - Growth Option",
+      "category": "Consumption / FMCG / Services",
+      "cohort": "Established leader",
+      "confidence": "High",
+      "peer_median_returns": {
+        "1d": 0.00019819146729360693,
+        "7d": 0.0019353538827994177,
+        "1m": 0.044098555996677,
+        "3m": 0.08138106548523139,
+        "6m": 0.05792655593908547,
+        "1y": -0.003248423216635987,
+        "3y": 0.12329464888502395
+      },
+      "peer_median_sharpe": {
+        "1m": 5.064868619736631,
+        "3m": 2.3238327427447336,
+        "6m": 0.4462221059644578,
+        "1y": -0.23767908346599154,
+        "3y": 0.5499282081637256
+      }
+    },
+    {
+      "scheme_code": 142388,
+      "rupeevest_code": 38375,
+      "short_name": "Edelweiss Recently Listed IPO Fund",
+      "scheme_name": "Edelweiss Recently Listed IPO Fund - Direct Plan - Growth",
+      "category": "Other Sector / Theme",
+      "cohort": "Established leader",
+      "confidence": "High",
+      "peer_median_returns": {
+        "1d": -0.0005846058488758743,
+        "7d": -0.001784121320249854,
+        "1m": 0.032086079875920825,
+        "3m": 0.031473390305486904,
+        "6m": 0.03884819598439737,
+        "1y": 0.0718233235725454,
+        "3y": 0.16670193788578125
+      },
+      "peer_median_sharpe": {
+        "1m": 3.5621629718374184,
+        "3m": 0.7229510225126197,
+        "6m": 0.2451304687393806,
+        "1y": 0.21033586208762983,
+        "3y": 0.5353233232361
+      }
+    },
+    {
+      "scheme_code": 145678,
+      "rupeevest_code": 41323,
+      "short_name": "BANK OF INDIA SMALL CAP FUND",
+      "scheme_name": "BANK OF INDIA SMALL CAP FUND - Direct Plan - Growth",
+      "category": "Small Cap Fund",
+      "cohort": "Established leader",
+      "confidence": "High",
+      "peer_median_returns": {
+        "1d": -0.0021416181692360814,
+        "7d": 0.004168010258212451,
+        "1m": 0.051675028402361045,
+        "3m": 0.10299428438277436,
+        "6m": 0.1800298387551974,
+        "1y": 0.1335585623223816,
+        "3y": 0.17373100633236416
+      },
+      "peer_median_sharpe": {
+        "1m": 6.280642565078168,
+        "3m": 2.76889180749648,
+        "6m": 1.668980197357354,
+        "1y": 0.7029215846134977,
+        "3y": 0.7958088757358261
+      }
+    },
+    {
+      "scheme_code": 147704,
+      "rupeevest_code": 42803,
+      "short_name": "Motilal Oswal Large and Midcap Fund",
+      "scheme_name": "Motilal Oswal Large and Midcap Fund - Direct Plan - Growth",
+      "category": "Large & Mid Cap Fund",
+      "cohort": "Established leader",
+      "confidence": "High",
+      "peer_median_returns": {
+        "1d": -0.0013450770561199699,
+        "7d": -0.0012164389849497748,
+        "1m": 0.03841060106753258,
+        "3m": 0.05213912115694619,
+        "6m": 0.04974551041966779,
+        "1y": 0.07347347689436656,
+        "3y": 0.15515566025983063
+      },
+      "peer_median_sharpe": {
+        "1m": 4.902796317742288,
+        "3m": 1.4268663585469072,
+        "6m": 0.3990366864497765,
+        "1y": 0.22835209040310692,
+        "3y": 0.7090588685800842
+      }
+    },
+    {
+      "scheme_code": 148481,
+      "rupeevest_code": 45058,
+      "short_name": "Invesco India Focused Fund",
+      "scheme_name": "Invesco India Focused Fund - Direct Plan - Growth",
+      "category": "Focused Fund",
+      "cohort": "Established leader",
+      "confidence": "High",
+      "peer_median_returns": {
+        "1d": -0.001736135149818574,
+        "7d": -0.0009126245669502375,
+        "1m": 0.036531342719904214,
+        "3m": 0.0548781846043499,
+        "6m": 0.04076410136854902,
+        "1y": 0.05307378431393561,
+        "3y": 0.14672006850709796
+      },
+      "peer_median_sharpe": {
+        "1m": 4.256520747015249,
+        "3m": 1.4724285517612559,
+        "6m": 0.25145004333659654,
+        "1y": 0.08648945258869495,
+        "3y": 0.655747653670206
+      }
+    },
+    {
+      "scheme_code": 149166,
+      "rupeevest_code": 45838,
+      "short_name": "Axis Value Fund",
+      "scheme_name": "Axis Value Fund - Direct Plan - Growth Option",
+      "category": "Value Fund",
+      "cohort": "Established leader",
+      "confidence": "High",
+      "peer_median_returns": {
+        "1d": -0.001235674054793412,
+        "7d": -0.0001731719617079075,
+        "1m": 0.023978473686447788,
+        "3m": 0.03203228299935046,
+        "6m": 0.012303966366764008,
+        "1y": 0.03292967040792938,
+        "3y": 0.14200088042532388
+      },
+      "peer_median_sharpe": {
+        "1m": 3.0032117835267096,
+        "3m": 0.7890568389006818,
+        "6m": -0.07403000404058044,
+        "1y": -0.04685048394904849,
+        "3y": 0.6901768021173815
+      }
+    },
+    {
+      "scheme_code": 151036,
+      "rupeevest_code": 611,
+      "short_name": "HSBC Midcap Fund",
+      "scheme_name": "HSBC Midcap Fund - Direct Plan - Growth",
+      "category": "Mid Cap Fund",
+      "cohort": "Established leader",
+      "confidence": "High",
+      "peer_median_returns": {
+        "1d": -0.0008026303252679501,
+        "7d": 0.000910052205905898,
+        "1m": 0.04224785566096778,
+        "3m": 0.06282833492385187,
+        "6m": 0.10006922445450361,
+        "1y": 0.10447736055068324,
+        "3y": 0.19020359599865322
+      },
+      "peer_median_sharpe": {
+        "1m": 6.0586419550718205,
+        "3m": 1.6193691144894053,
+        "6m": 0.8703886039347256,
+        "1y": 0.4140450249768822,
+        "3y": 0.8604380672019408
+      }
+    },
+    {
+      "scheme_code": 151379,
+      "rupeevest_code": 45721,
+      "short_name": "ITI Flexi Cap Fund",
+      "scheme_name": "ITI Flexi Cap Fund - Direct Plan - Growth Option",
+      "category": "Flexi Cap Fund",
+      "cohort": "Established leader",
+      "confidence": "High",
+      "peer_median_returns": {
+        "1d": -0.0015996637203273822,
+        "7d": 0,
+        "1m": 0.037317884512814814,
+        "3m": 0.0572114632450027,
+        "6m": 0.04540190864852267,
+        "1y": 0.049487410639016405,
+        "3y": 0.13715913479533381
+      },
+      "peer_median_sharpe": {
+        "1m": 4.872938810448944,
+        "3m": 1.5972509655593967,
+        "6m": 0.36918410147118474,
+        "1y": 0.05273485628018293,
+        "3y": 0.6339519986953156
+      }
+    },
+    {
+      "scheme_code": 152018,
+      "rupeevest_code": 39956,
+      "short_name": "LIC MF Value Fund",
+      "scheme_name": "LIC MF Value Fund - Direct Plan - Growth",
+      "category": "Value Fund",
+      "cohort": "Established leader",
+      "confidence": "High",
+      "peer_median_returns": {
+        "1d": -0.001235674054793412,
+        "7d": -0.0001731719617079075,
+        "1m": 0.023978473686447788,
+        "3m": 0.03203228299935046,
+        "6m": 0.012303966366764008,
+        "1y": 0.03292967040792938,
+        "3y": 0.14200088042532388
+      },
+      "peer_median_sharpe": {
+        "1m": 3.0032117835267096,
+        "3m": 0.7890568389006818,
+        "6m": -0.07403000404058044,
+        "1y": -0.04685048394904849,
+        "3y": 0.6901768021173815
+      }
+    },
+    {
+      "scheme_code": 152082,
+      "rupeevest_code": 48220,
+      "short_name": "HDFC Pharma and Healthcare Fund",
+      "scheme_name": "HDFC Pharma and Healthcare Fund - Direct Plan - Growth Option",
+      "category": "Healthcare / Pharma",
+      "cohort": "Emerging leader",
+      "confidence": "Provisional",
+      "peer_median_returns": {
+        "1d": -0.0009965122072745913,
+        "7d": -0.0024758114737912784,
+        "1m": 0.03962815088492966,
+        "3m": 0.09576487083084229,
+        "6m": 0.21678983603265056,
+        "1y": 0.1693116078149619,
+        "3y": 0.22273965876060697
+      },
+      "peer_median_sharpe": {
+        "1m": 4.431864929137752,
+        "3m": 3.1425092409561817,
+        "6m": 2.5488090833314843,
+        "1y": 0.9556813435850324,
+        "3y": 1.1771024735617228
+      }
+    },
+    {
+      "scheme_code": 152206,
+      "rupeevest_code": 48350,
+      "short_name": "DSP Banking & Financial Services Fund",
+      "scheme_name": "DSP Banking & Financial Services Fund - Direct Plan - Growth",
+      "category": "Banking / Financial Services",
+      "cohort": "Emerging leader",
+      "confidence": "Medium",
+      "peer_median_returns": {
+        "1d": -0.004546160139966338,
+        "7d": 0.0025063939888746445,
+        "1m": 0.02169544937114376,
+        "3m": 0.04336740524170146,
+        "6m": -0.014855176369371947,
+        "1y": 0.07203568326800558,
+        "3y": 0.141736350865713
+      },
+      "peer_median_sharpe": {
+        "1m": 1.9520878333544234,
+        "3m": 0.8730805147520633,
+        "6m": -0.2514200951573061,
+        "1y": 0.18626128776710993,
+        "3y": 0.5813012682284107
+      }
+    },
+    {
+      "scheme_code": 152607,
+      "rupeevest_code": 48656,
+      "short_name": "BANDHAN INNOVATION FUND",
+      "scheme_name": "BANDHAN INNOVATION FUND - Direct Plan - Growth",
+      "category": "Technology / Digital / Innovation",
+      "cohort": "Emerging leader",
+      "confidence": "Medium",
+      "peer_median_returns": {
+        "1d": -0.0016664874744650726,
+        "7d": 0.0028620492272466436,
+        "1m": 0.058750535505886825,
+        "3m": 0.08665886483323582,
+        "6m": 0.08185129498801569,
+        "1y": 0.05753758740948556,
+        "3y": 0.14603261131071976
+      },
+      "peer_median_sharpe": {
+        "1m": 5.258561570045815,
+        "3m": 1.993203930996784,
+        "6m": 0.7411195321822246,
+        "1y": 0.12926145372891779,
+        "3y": 0.5942484975729354
+      }
+    }
+  ],
+  "exclusions": [
+    "Axis Innovation Fund",
+    "quant BFSI Fund",
+    "ITI Small Cap Fund",
+    "Tata Dividend Yield Fund"
+  ]
+}
