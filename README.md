@@ -1,34 +1,41 @@
 # Alpha Lens — Mutual Fund Portfolio Changes
 
-Alpha Lens is an interactive research dashboard focused exclusively on material portfolio changes across selected actively managed Indian equity mutual funds.
+[Open the live website](https://alpha-lens-portfolio-changes.purohitcm.chatgpt.site)
 
-## What it includes
+Alpha Lens is an interactive research dashboard focused on significant portfolio changes across selected actively managed Indian equity mutual funds.
 
-- 332 material stock-level portfolio moves across 12 selected funds
-- New positions, exited positions, weight increases, and weight reductions
-- Four-month holding-weight paths from April to July 2026
-- Fund activity ranking and largest-conviction signals
-- Search, fund filters, move-type filters, sorting, and progressive row loading
-- Responsive desktop and mobile layouts
+## Features
 
-## Materiality rules
+- Refreshes the high-alpha fund selection using current NAV history
+- Reloads the latest available portfolio disclosures for the selected funds
+- Shows stock exposure across the available previous three to four months
+- Tracks new positions, exits, weight increases, and weight reductions
+- Sortable and filterable portfolio-change explorer
+- Excel download containing the current explorer view and fund selection
+- Responsive desktop and mobile interface
 
-- New or exited holding: at least 0.50% portfolio weight
-- Existing holding: absolute April-to-July movement of at least 0.50 percentage points
+## Refresh methodology
 
-Weight changes can reflect both portfolio transactions and market-price movement. The dashboard is a research screen, not investment advice.
+The on-demand refresh revalidates a pre-screened candidate pool against current NAV history and the category medians from the most recent full-universe screen. It then retrieves the latest available portfolio disclosures and recalculates significant stock-level changes.
+
+Material changes are defined as:
+
+- New or exited position: at least 0.50% portfolio weight
+- Existing position: absolute movement of at least 0.50 percentage points
+
+Portfolio-weight changes can reflect both trading activity and market-price movement. Alpha Lens is a research screen and not investment advice.
 
 ## Local development
 
 ```bash
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
 ## Production build
 
 ```bash
-pnpm build
+npm run build
 ```
 
 Built with React, vinext, Vite, and the OpenAI Sites runtime.
