@@ -1,6 +1,6 @@
 # Alpha Lens — Mutual Fund Portfolio Changes
 
-[Open the live website](https://alpha-lens-portfolio-changes.purohitcm.chatgpt.site)
+[Open the live website](https://sohampurohit2502.github.io/alpha-lens-portfolio-changes/)
 
 Alpha Lens is an interactive research dashboard focused on significant portfolio changes across selected actively managed Indian equity mutual funds.
 
@@ -38,4 +38,4 @@ npm run dev
 npm run build
 ```
 
-Built with React, vinext, Vite, and the OpenAI Sites runtime.
+The public frontend is hosted with GitHub Pages. Live refresh calculations run through a Netlify Function.
