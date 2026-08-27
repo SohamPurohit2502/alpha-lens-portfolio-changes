@@ -11,6 +11,10 @@ type SiteData = { as_of:string; refreshed_at?:string; funds:Fund[]; portfolio_ro
 type SortKey = "security"|"fund"|"move"|"delta"|`month:${string}`;
 type SortState = { key:SortKey; direction:"asc"|"desc" };
 
+declare global {
+  interface Window { __ALPHA_LENS_REFRESH_API__?: string }
+}
+
 const defaultMonths = initialData.funds[0]?.portfolio_months ?? ["Jul-26","Jun-26","May-26","Apr-26"];
 const normalizedInitial: SiteData = {
   as_of: initialData.as_of,
@@ -69,7 +73,7 @@ export default function Home(){
 
   const refresh=async()=>{
     setRefreshing(true);setRefreshError("");
-    try{const response=await fetch("/api/refresh",{method:"POST",cache:"no-store"});const payload=await response.json();if(!response.ok)throw new Error(payload.error||"Refresh could not be completed.");setSiteData(payload as SiteData);setFund("All funds");setMoveType("All moves");setVisible(40);}
+    try{const endpoint=window.__ALPHA_LENS_REFRESH_API__??"/api/refresh";const response=await fetch(endpoint,{method:"POST",cache:"no-store"});const payload=await response.json();if(!response.ok)throw new Error(payload.error||"Refresh could not be completed.");setSiteData(payload as SiteData);setFund("All funds");setMoveType("All moves");setVisible(40);}
     catch(error){setRefreshError(error instanceof Error?error.message:"Refresh could not be completed. The current data is still shown.");}
     finally{setRefreshing(false);}
   };
