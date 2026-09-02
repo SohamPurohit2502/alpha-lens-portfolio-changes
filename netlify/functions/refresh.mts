@@ -14,10 +14,11 @@ function corsHeaders(request: Request) {
   };
 }
 
-export default async (request: Request, _context: Context) => {
+export default async (request: Request, context: Context) => {
+  void context;
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders(request) });
   if (request.method !== "POST") return Response.json({ error: "Method not allowed" }, { status: 405, headers: corsHeaders(request) });
-  const result = await POST();
+  const result = await POST(request);
   const headers = new Headers(result.headers);
   Object.entries(corsHeaders(request)).forEach(([key, value]) => headers.set(key, value));
   return new Response(result.body, { status: result.status, statusText: result.statusText, headers });

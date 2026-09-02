@@ -3,8 +3,25 @@ import fallback from "../../portfolio-data.json";
 
 type Candidate = (typeof config.candidates)[number];
 type HistoryPoint = { date: Date; nav: number };
-const horizons = { "1d": 1, "7d": 7, "1m": 30, "3m": 91, "6m": 183, "1y": 365, "3y": 1096 } as const;
+const horizons = { "1d": 1, "7d": 7, "15d": 15, "30d": 30, "1m": 30, "3m": 91, "6m": 183, "1y": 365, "2y": 731, "3y": 1096, "5y": 1826 } as const;
 const sharpeHorizons = ["1m", "3m", "6m", "1y", "3y"] as const;
+const exitLoads: Record<number, string> = {
+  119364: "1% >10% units, within 1 year",
+  119727: "1% within 1 year",
+  133386: "Nil · 3-year lock-in",
+  135805: "0.25% within 30 days",
+  142388: "2% within 180 days",
+  145678: "1% >10% units, within 1 year",
+  147704: "1% within 1 year",
+  148481: "1% >10% units, within 1 year",
+  149166: "1% >20% units, within 1 year",
+  151036: "1% >10% units, within 1 year",
+  151379: "0.50% within 3 months",
+  152018: "1% >12% units, within 1 year",
+  152082: "1% within 30 days",
+  152206: "0.50% within 1 month",
+  152607: "0.50% within 30 days",
+};
 
 const median = (values: number[]) => {
   if (!values.length) return null;
@@ -31,6 +48,29 @@ function nearestBefore(series: HistoryPoint[], target: Date) {
   return null;
 }
 
+function nearestOnOrAfter(series: HistoryPoint[], target: Date) {
+  return series.find((point) => point.date >= target) ?? null;
+}
+
+function pointToPoint(series: HistoryPoint[], startDate: string, endDate: string) {
+  const start = new Date(`${startDate}T00:00:00Z`);
+  const end = new Date(`${endDate}T23:59:59Z`);
+  const startPoint = nearestOnOrAfter(series, start);
+  const endPoint = nearestBefore(series, end);
+  if (!startPoint || !endPoint || startPoint.date >= endPoint.date) return null;
+  const years = (endPoint.date.getTime() - startPoint.date.getTime()) / (365.25 * 86400000);
+  const absolute = endPoint.nav / startPoint.nav - 1;
+  const method = years < 1 ? "Absolute" : "CAGR";
+  return {
+    value: method === "Absolute" ? absolute : (endPoint.nav / startPoint.nav) ** (1 / years) - 1,
+    method,
+    start_nav_date: startPoint.date.toISOString().slice(0, 10),
+    end_nav_date: endPoint.date.toISOString().slice(0, 10),
+    start_nav: startPoint.nav,
+    end_nav: endPoint.nav,
+  };
+}
+
 function calculateCandidate(candidate: Candidate, series: HistoryPoint[]) {
   if (series.length < 30) return null;
   const latest = series.at(-1)!;
@@ -40,7 +80,7 @@ function calculateCandidate(candidate: Candidate, series: HistoryPoint[]) {
     const prior = nearestBefore(series, target);
     if (!prior) { returns[label] = null; continue; }
     let value = latest.nav / prior.nav - 1;
-    if (label === "1y" || label === "3y") {
+    if (label === "1y" || label === "2y" || label === "3y" || label === "5y") {
       const years = (latest.date.getTime() - prior.date.getTime()) / (365.25 * 86400000);
       value = years > 0 ? (latest.nav / prior.nav) ** (1 / years) - 1 : value;
     }
@@ -89,6 +129,8 @@ function calculateCandidate(candidate: Candidate, series: HistoryPoint[]) {
     short_name: candidate.short_name,
     scheme: candidate.scheme_name,
     category: candidate.category,
+    asset_class: "Equity",
+    exit_load: exitLoads[candidate.scheme_code] ?? "Refer latest AMC disclosure",
     cohort: returns["3y"] == null ? "Emerging leader" : "Established leader",
     confidence: candidate.confidence,
     returns,
@@ -139,6 +181,7 @@ async function fetchPortfolio(fund: ReturnType<typeof calculateCandidate> & { ra
     month_name?: string[];
     stock_data?: Array<Array<Record<string, unknown>>>;
     stock_mapping?: Record<string, string>;
+    MonthwiseAUM?: Array<{ aum?: string | number }>;
   };
   const months = (payload.month_name ?? []).slice(0, 4);
   const stocks = (payload.stock_data ?? []).slice(0, months.length);
@@ -176,7 +219,7 @@ async function fetchPortfolio(fund: ReturnType<typeof calculateCandidate> & { ra
       significance: changeType.includes("position") ? "New/exit weight >=0.50% of portfolio" : "Absolute weight movement >=0.50 percentage points",
     }];
   });
-  return { months, rows, source };
+  return { months, rows, source, aum: numberOrNull(payload.MonthwiseAUM?.[0]?.aum) };
 }
 
 function fallbackRows(schemeCode: number) {
@@ -194,7 +237,31 @@ function fallbackRows(schemeCode: number) {
   }));
 }
 
-export async function POST() {
+export async function POST(request?: Request) {
+  let body: { mode?: string; start_date?: string; end_date?: string; scheme_codes?: number[] } = {};
+  if (request) {
+    try { body = await request.json(); } catch { body = {}; }
+  }
+  if (body.mode === "point_to_point") {
+    const startDate = body.start_date ?? "";
+    const endDate = body.end_date ?? "";
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(startDate) || !/^\d{4}-\d{2}-\d{2}$/.test(endDate) || startDate >= endDate) {
+      return Response.json({ error: "Choose a valid start date before the end date." }, { status: 400 });
+    }
+    const requested = new Set((body.scheme_codes ?? []).map(Number));
+    const candidates = config.candidates.filter((candidate) => !requested.size || requested.has(candidate.scheme_code));
+    const results = await Promise.allSettled(candidates.map(async (candidate) => {
+      const response = await fetch(`https://api.mfapi.in/mf/${candidate.scheme_code}`, {
+        headers: { "Accept": "application/json", "User-Agent": "Alpha Lens point-to-point research" },
+        cache: "no-store", signal: AbortSignal.timeout(25000),
+      });
+      if (!response.ok) throw new Error(`NAV ${candidate.scheme_code}: ${response.status}`);
+      return { scheme_code: candidate.scheme_code, ...pointToPoint(parseHistory(await response.json()), startDate, endDate) };
+    }));
+    const values = results.flatMap((result) => result.status === "fulfilled" && result.value.value != null ? [result.value] : []);
+    if (!values.length) return Response.json({ error: "No NAV history is available for that date range." }, { status: 422 });
+    return Response.json({ start_date: startDate, end_date: endDate, method: values[0].method, values }, { headers: { "Cache-Control": "no-store, max-age=0" } });
+  }
   const results = await Promise.allSettled(config.candidates.map(fetchCandidate));
   const analyzed = results.flatMap((result) => result.status === "fulfilled" && result.value ? [result.value] : []);
   if (analyzed.length < 6) return Response.json({ error: "Live NAV sources are temporarily unavailable. The existing data remains active." }, { status: 502 });
@@ -202,7 +269,7 @@ export async function POST() {
   const selected = analyzed.filter((fund) => fund.qualifies)
     .sort((a, b) => b.screen_score - a.screen_score)
     .slice(0, 12)
-    .map((fund, index) => ({ ...fund, rank: index + 1 }));
+    .map((fund, index) => ({ ...fund, rank: index + 1, portfolio_source: "", portfolio_months: [] as string[], aum: null as number | null }));
   const portfolioResults = await Promise.allSettled(selected.map(fetchPortfolio));
   const portfolioRows: Array<Record<string, unknown>> = [];
   const monthSet = new Set<string>();
@@ -215,12 +282,14 @@ export async function POST() {
       portfolioRows.push(...result.value.rows);
       fund.portfolio_source = result.value.source;
       fund.portfolio_months = result.value.months;
+      fund.aum = result.value.aum;
     } else {
       const fallbackFund = fallback.funds.find((item) => item.scheme_code === fund.scheme_code);
       (fallbackFund?.portfolio_months ?? []).forEach((month) => monthSet.add(month));
       portfolioRows.push(...fallbackRows(fund.scheme_code));
       fund.portfolio_source = fallbackFund?.portfolio_source ?? "Cached portfolio disclosure";
       fund.portfolio_months = fallbackFund?.portfolio_months ?? [];
+      fund.aum = Array.isArray(fallbackFund?.aum) ? fallbackFund.aum[0] : null;
     }
   });
 
