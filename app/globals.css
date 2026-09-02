@@ -21,3 +21,6 @@ footer{padding:60px 6vw;display:grid;grid-template-columns:.7fr 1.4fr .7fr;gap:5
 @media(max-width:1000px){.refresh-strip{grid-template-columns:1fr}.refresh-strip .refresh-button{width:max-content}.scope-stats{flex-wrap:wrap}.topbar .refresh-button.compact{display:inline-flex}.table-head,.data-row{display:grid}.table-head button:nth-child(n),.data-row>*:nth-child(n){display:initial}}
 @media(max-width:680px){.topbar{padding:0 4vw}.topbar .brand>span:last-child{display:none}.refresh-button.compact{padding:0 12px}.refresh-strip{margin:0 4vw 45px;padding:18px}.refresh-strip .refresh-button{width:100%}.scope-stats{gap:12px}.scope-stats span{width:calc(50% - 6px)}.explorer-actions{align-items:stretch;flex-direction:column}.download-button{width:100%}.sort-hint{display:none}.table-scroll{margin-right:-5vw;width:calc(100% + 5vw)}.moves-table{padding-right:5vw}.table-head{display:grid}.data-row{display:grid;padding:0}.data-row>.delta,.type-pill,.fund-cell,.number-cell,.security-cell{grid-column:auto;grid-row:auto}.number-cell{display:block}.table-head button:nth-child(n),.data-row>*:nth-child(n){display:initial}}
 @media(prefers-reduced-motion:reduce){.spinner{animation:none}}
+
+/* Header sticks to the top of its own scroll container; an app-bar offset creates a false blank row. */
+.screener-table th{top:0}
