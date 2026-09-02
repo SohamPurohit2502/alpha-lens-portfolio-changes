@@ -25,7 +25,7 @@ const normalizedInitial: SiteData = {
   portfolio_months: defaultMonths,
   portfolio_rows: initialData.portfolio_rows.map((row) => ({
     scheme_code:row.scheme_code, scheme:row.scheme, cohort:row.cohort, change_type:row.change_type,
-    security:row.security, delta_pp:row.delta_pp, significance:row.significance,
+    security:row.security, delta_pp:row.delta_pp??(row.change_type==="New position"?row.jul_weight:null), significance:row.significance,
     month_weights:Object.fromEntries(defaultMonths.map((month,index)=>[month,[row.jul_weight,row.jun_weight,row.may_weight,row.apr_weight][index]??null])),
   })),
 };

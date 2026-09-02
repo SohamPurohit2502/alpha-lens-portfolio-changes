@@ -200,7 +200,7 @@ async function fetchPortfolio(fund: ReturnType<typeof calculateCandidate> & { ra
     const oldest = holding.weights.at(-1) ?? null;
     let changeType = "";
     let delta: number | null = null;
-    if (latest != null && oldest == null && latest >= 0.5) changeType = "New position";
+    if (latest != null && oldest == null && latest >= 0.5) { changeType = "New position"; delta = latest; }
     else if (latest == null && oldest != null && oldest >= 0.5) changeType = "Exited position";
     else if (latest != null && oldest != null) {
       delta = latest - oldest;
@@ -232,7 +232,7 @@ function fallbackRows(schemeCode: number) {
     change_type: row.change_type,
     security: row.security,
     month_weights: Object.fromEntries(months.map((month, index) => [month, [row.jul_weight, row.jun_weight, row.may_weight, row.apr_weight][index] ?? null])),
-    delta_pp: row.delta_pp,
+    delta_pp: row.delta_pp ?? (row.change_type === "New position" ? row.jul_weight : null),
     significance: row.significance,
   }));
 }
