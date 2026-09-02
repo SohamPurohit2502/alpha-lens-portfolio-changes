@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     description,
-    icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+    icons: { icon: "/alpha-lens-logo.png", shortcut: "/alpha-lens-logo.png", apple: "/alpha-lens-logo.png" },
     openGraph: { title, description, images: [{ url: image, width: 1792, height: 1024, alt: "Alpha Lens portfolio change tracker" }] },
     twitter: { card: "summary_large_image", title, description, images: [image] },
   };
